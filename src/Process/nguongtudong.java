@@ -43,21 +43,35 @@ public class nguongtudong {
             mang1[x] = dem;
             y += mang1[x];
             mang2[x] = y;
-            mang3[x] = mang1[x]*mang2[x];
             x++;
         }
+        x = 1; mang3[0] = 1;
+        while (x < 256) {
+            float s = 0;
+            for (int i = 0; i < x; i++) {
+                s += (mang1[i]*i)/ mang2[x];
+            }
+            
+            if (s == Float.NaN) {
+                mang3[x] =0;
+            }else mang3[x] = s; 
+            
+            System.out.println(x + " - mang3 - " + mang3[x]);
+            x++;
+        }
+//        System.out.println(mang3[256]);
 //        float s = 0;
 //        for (int i = 0; i < 256; i++) {
-//            s += (mang3[x]/mang2[x]);
-//            mang4[i] = s;
+//            s += mang3[x];
+//            mang4[i] = s / mang2[x];
 //        }
 //        float[] mang5 = new float[256];
 //        for (int i = 0; i < 255; i++) {
-//            mang5[i] =(((mang2[i])/((height*width) - mang2[i]))*(mang4[i]-mang4[256])*(mang4[i]-mang4[256]));
+//            mang4[i] =(((mang2[i])/((height*width) - mang2[i]))*(mang3[i]-mang3[256])*(mang3[i]-mang3[256]));
 //        }
         
+        
         System.out.println(timmax(mang3));
-        System.out.println(timmax(mang2));
     }
     
     public float timmax(float[] a){
